@@ -3,8 +3,8 @@ import { getEventById } from "../../dummyData.js";
 import EventSummary from "@/components/event-detail/event-summary";
 import EventContent from "@/components/event-detail/event-content";
 import EventLogistics from "@/components/event-detail/event-logistics";
-import LogisticsItem from "@/components/event-detail/logistics-item";
-import Icon from "../../components/icons/arrow-right-icon.js";
+import ErrorAlert from "@/components/ui/error-alert.js";
+import Button from "../../components/ui/button";
 
 import { Fragment } from "react";
 
@@ -13,7 +13,16 @@ function SpecificEventPage() {
   const eventData = getEventById(router.query.id);
 
   if (!eventData) {
-    return <p>no event found</p>;
+    return (
+      <Fragment>
+        <div className="center">
+          <ErrorAlert>
+            <p>No event found!</p>
+          </ErrorAlert>
+          <Button link="/events">All events</Button>
+        </div>
+      </Fragment>
+    );
   }
 
   return (

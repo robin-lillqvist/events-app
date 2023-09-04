@@ -4,14 +4,23 @@ import EventList from "@/components/events/event-list";
 import ResultsTitle from "@/components/events/results-title";
 import { Fragment } from "react";
 import ErrorAlert from "@/components/ui/error-alert";
+import Button from "@/components/ui/button";
 
 function FilteredEventsPage() {
   const router = useRouter();
 
+  console.log(router.query.slug);
   const filterData = router.query.slug;
 
   if (!filterData) {
-    return <p className="center">Loading...</p>;
+    return (
+      <Fragment>
+        <ErrorAlert>
+          <p className="center">Loading...</p>
+        </ErrorAlert>
+        <Button link="/events">All events</Button>
+      </Fragment>
+    );
   }
 
   const filteredYear = +filterData[0];
@@ -27,10 +36,12 @@ function FilteredEventsPage() {
   ) {
     return (
       <Fragment>
-        <ErrorAlert>
-          <p>Invalid filter, Please adjust values</p>
-        </ErrorAlert>
-        <Button link="/events">All events</Button>
+        <div className="center">
+          <ErrorAlert>
+            <p>Invalid filter, Please adjust values</p>
+          </ErrorAlert>
+          <Button link="/events">All events</Button>
+        </div>
       </Fragment>
     );
   }
@@ -41,10 +52,12 @@ function FilteredEventsPage() {
   if (!filteredEvents || filteredEvents.length < 1) {
     return (
       <Fragment>
-        <ErrorAlert>
-          <p>No events founds</p>
-        </ErrorAlert>
-        <Button link="/events">All events</Button>
+        <div className="center">
+          <ErrorAlert>
+            <p>No events founds</p>
+          </ErrorAlert>
+          <Button link="/events">All events</Button>
+        </div>
       </Fragment>
     );
   }
