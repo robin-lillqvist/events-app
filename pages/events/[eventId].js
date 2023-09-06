@@ -8,9 +8,10 @@ import Button from "../../components/ui/button";
 import { Fragment } from "react";
 
 function SpecificEventPage(props) {
-  const eventData = props.selectedEvent;
+  const event = props.selectedEvent;
 
-  if (!eventData) {
+  if (!event) {
+    console.log("Didn't find ID");
     return (
       <Fragment>
         <div className="center">
@@ -46,22 +47,30 @@ function SpecificEventPage(props) {
   );
 }
 
-export async function getStaticProps(context) {
-  const eventId = context.params.id;
-  const selectedEvent = await getEventById(eventId);
-
-  return {
-    props: { selectedEvent: selectedEvent },
-  };
-}
-
 export async function getStaticPaths() {
   const events = await getAllEvents();
-  const paths = events.map((event) => ({ params: { id: event.id } }));
+  const paths = events.map((event) => ({ params: { eventId: event.id } }));
+
+  console.log("Inuti getStaticPaths");
 
   return {
     paths: paths,
-    fallback: false,
+    fallback: true,
+  };
+}
+
+export async function getStaticProps(context) {
+  const eventId = context.params.eventId;
+  const selectedEvent = await getEventById(eventId);
+
+  console.log("Inuti getStaticProps");
+
+  if (!eventId) {
+    return "0";
+  }
+
+  return {
+    props: { selectedEvent: selectedEvent },
   };
 }
 
