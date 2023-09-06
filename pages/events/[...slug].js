@@ -8,8 +8,6 @@ import Button from "@/components/ui/button";
 
 function FilteredEventsPage() {
   const router = useRouter();
-
-  console.log(router.query.slug);
   const filterData = router.query.slug;
 
   if (!filterData) {
@@ -47,7 +45,6 @@ function FilteredEventsPage() {
   }
 
   const filteredEvents = getFilteredEvents({ year: filteredYear, month: filteredMonth });
-  console.log(filteredEvents);
 
   if (!filteredEvents || filteredEvents.length < 1) {
     return (
