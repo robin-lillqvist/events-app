@@ -10,24 +10,21 @@ function Events(props) {
   const router = useRouter();
   const { events } = props;
 
-  console.log(events);
-
   function findEventsHandler(year, month) {
     const fullPath = `/events/${year}/${month}`;
     router.push(fullPath);
   }
 
-  console.log("Inside event index page...");
+  const headData = (
+    <Head>
+      <title>All events page</title>
+      <meta name="description" content="Here you can "></meta>
+    </Head>
+  );
 
   return (
     <Fragment>
-      <Head>
-        <title>All my events</title>
-      </Head>
-      <Head>
-        <title>All Events</title>
-        <meta name="description" content="Find a lot of great events that allow you to evolve..." />
-      </Head>
+      {headData}
       <EventsSearch onSearch={findEventsHandler} />
       <EventList events={events} />
     </Fragment>

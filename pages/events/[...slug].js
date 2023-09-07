@@ -34,21 +34,30 @@ function FilteredEventsPage(props) {
     }
   }, [data]);
 
+  const numYear = +urlData[0];
+  const numMonth = +urlData[1];
+  const thisDate = new Date(numYear, numMonth - 1);
+
+  const headData = (
+    <Head>
+      <title>{`Events from ${thisDate.getFullYear()}/${thisDate.getMonth() + 1}`}</title>
+      <meta name="description" content={`All events from ${thisDate.getFullYear()}/${thisDate.getMonth() + 1}`}></meta>
+    </Head>
+  );
+
   if (!loadedEvents) {
     return (
       <Fragment>
+        {headData}
         <p className="center">Loading...</p>
       </Fragment>
     );
   }
 
-  const numYear = +urlData[0];
-  const numMonth = +urlData[1];
-  const thisDate = new Date(numYear, numMonth - 1);
-
   if (isNaN(numYear) || isNaN(numMonth) || numYear > 2030 || numYear < 2021 || numMonth < 1 || numMonth > 12 || error) {
     return (
       <Fragment>
+        {headData}
         <div className="center">
           <ErrorAlert>
             <p>Invalid filter, Please adjust values</p>
@@ -67,6 +76,7 @@ function FilteredEventsPage(props) {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <Fragment>
+        {headData}
         <div className="center">
           <ErrorAlert>
             <p>No events founds</p>
@@ -79,6 +89,7 @@ function FilteredEventsPage(props) {
 
   return (
     <Fragment>
+      {headData}
       <ResultsTitle date={thisDate} />
       <EventList events={filteredEvents} />
     </Fragment>

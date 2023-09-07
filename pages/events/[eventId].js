@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { getEventById, getFeaturedEvents } from "@/helpers/api-utils.js";
 import EventSummary from "@/components/event-detail/event-summary";
 import EventContent from "@/components/event-detail/event-content";
@@ -16,10 +17,12 @@ function SpecificEventPage(props) {
     );
   }
 
-  console.log("Inside eventId page...");
-
   return (
     <Fragment>
+      <Head>
+        <title>{event.title}</title>
+        <meta name="description" content={event.description}></meta>
+      </Head>
       <EventSummary title={event.title} />
       <EventLogistics date={event.date} address={event.location} image={event.image} imageAlt={event.title} />
       <EventContent>
