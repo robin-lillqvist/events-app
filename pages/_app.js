@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }) {
     <Layout>
       <Head name="viewport" content="initial-scale=1.0, width=device-width">
         <title>NextJS Events</title>
-        <meta name="description">NextJS Events</meta>
+        <meta name="description" content="description" />
       </Head>
       <Component {...pageProps} />
     </Layout>
