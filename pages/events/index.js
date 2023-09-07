@@ -17,6 +17,8 @@ function Events(props) {
     router.push(fullPath);
   }
 
+  console.log("Inside event index page...");
+
   return (
     <Fragment>
       <Head>

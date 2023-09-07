@@ -9,7 +9,6 @@ import Button from "@/components/ui/button";
 function FilteredEventsPage() {
   const router = useRouter();
   const filterData = router.query.slug;
-  console.log(filterData);
 
   if (!filterData) {
     return (
@@ -33,8 +32,6 @@ function FilteredEventsPage() {
     filteredMonth < 1 ||
     filteredMonth > 12
   ) {
-    console.log("Inside slug page...");
-
     return (
       <Fragment>
         <div className="center">
@@ -63,6 +60,8 @@ function FilteredEventsPage() {
   }
 
   const date = new Date(filteredYear, filteredMonth - 1);
+
+  console.log("Inside slug page...");
 
   return (
     <Fragment>

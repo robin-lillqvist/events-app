@@ -16,6 +16,8 @@ function SpecificEventPage(props) {
     );
   }
 
+  console.log("Inside eventId page...");
+
   return (
     <Fragment>
       <EventSummary title={event.title} />
