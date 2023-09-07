@@ -34,14 +34,10 @@ function FilteredEventsPage(props) {
     }
   }, [data]);
 
-  const numYear = +urlData[0];
-  const numMonth = +urlData[1];
-  const thisDate = new Date(numYear, numMonth - 1);
-
-  const headData = (
+  let headData = (
     <Head>
-      <title>{`Events from ${thisDate.getFullYear()}/${thisDate.getMonth() + 1}`}</title>
-      <meta name="description" content={`All events from ${thisDate.getFullYear()}/${thisDate.getMonth() + 1}`}></meta>
+      <title>Title</title>
+      <meta name="description" content="A list of filtered events"></meta>
     </Head>
   );
 
@@ -53,6 +49,17 @@ function FilteredEventsPage(props) {
       </Fragment>
     );
   }
+
+  const numYear = +urlData[0];
+  const numMonth = +urlData[1];
+  const thisDate = new Date(numYear, numMonth - 1);
+
+  headData = (
+    <Head>
+      <title>{`Events from ${thisDate.getFullYear()}/${thisDate.getMonth() + 1}`}</title>
+      <meta name="description" content={`All events from ${thisDate.getFullYear()}/${thisDate.getMonth() + 1}`}></meta>
+    </Head>
+  );
 
   if (isNaN(numYear) || isNaN(numMonth) || numYear > 2030 || numYear < 2021 || numMonth < 1 || numMonth > 12 || error) {
     return (

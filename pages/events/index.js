@@ -18,7 +18,7 @@ function Events(props) {
   const headData = (
     <Head>
       <title>All events page</title>
-      <meta name="description" content="Here you can "></meta>
+      <meta name="description" content="All events page"></meta>
     </Head>
   );
 
